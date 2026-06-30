@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#F7F2EC" />
+
+  <!-- ====== SEO / Social sharing (edit text in script.js CONFIG if you prefer) ====== -->
+  <title>Arya &amp; Senja — Engagement Celebration</title>
+  <meta name="description" content="Together with their families, Arya Pratama & Senja Maharani joyfully invite you to celebrate their engagement — Saturday, 22 August 2026." />
+  <meta property="og:title" content="Arya & Senja — Engagement Celebration" />
+  <meta property="og:description" content="Join us to celebrate our engagement — 22 August 2026, The Glasshouse at Sentul." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="./images/hero.jpg" />
+
+  <!-- ====== Google Fonts: Cormorant Garamond (display) + Inter (body) ====== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ============================================================= -->
+  <!-- Top scroll-progress bar                                       -->
+  <!-- ============================================================= -->
+  <div class="progress-bar" id="progressBar" aria-hidden="true"></div>
+
+  <!-- ============================================================= -->
+  <!-- Floating controls: music toggle + jump-to-RSVP               -->
+  <!-- ============================================================= -->
+  <div class="floating-controls">
+    <button class="fab fab--music" id="musicToggle" type="button"
+            aria-label="Play background music" aria-pressed="false">
+      <!-- muted icon (default) -->
+      <svg class="icon-muted" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M11 5 6 9H3v6h3l5 4V5z" fill="currentColor"/>
+        <path d="M16 9l5 6M21 9l-5 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+      </svg>
+      <!-- unmuted icon (shown when playing) -->
+      <svg class="icon-unmuted" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M11 5 6 9H3v6h3l5 4V5z" fill="currentColor"/>
+        <path d="M15.5 8.5a5 5 0 0 1 0 7M18 6a8.5 8.5 0 0 1 0 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+      </svg>
+    </button>
+
+    <button class="fab fab--rsvp" id="rsvpFab" type="button" aria-label="Jump to RSVP">
+      RSVP
+    </button>
+  </div>
+
+  <!-- Hidden audio element (src injected from CONFIG) -->
+  <audio id="bgAudio" loop preload="none"></audio>
+
+  <main>
+
+    <!-- ========================================================= -->
+    <!-- 1. HERO                                                    -->
+    <!-- ========================================================= -->
+    <header class="hero" id="top">
+      <!-- Botanical corner accents -->
+      <span class="corner corner--tl" aria-hidden="true"></span>
+      <span class="corner corner--br" aria-hidden="true"></span>
+
+      <div class="hero__inner reveal">
+        <p class="hero__eyebrow" data-config="eventType"></p>
+
+        <h1 class="hero__names">
+          <span class="hero__name" data-config="partnerA"></span>
+          <span class="hero__amp" aria-hidden="true">&amp;</span>
+          <span class="hero__name" data-config="partnerB"></span>
+        </h1>
+
+        <!-- Botanical divider -->
+        <div class="divider" aria-hidden="true">
+          <svg class="sprig" viewBox="0 0 120 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 12h44" stroke="currentColor" stroke-width="1"/>
+            <path d="M76 12h44" stroke="currentColor" stroke-width="1"/>
+            <path d="M60 4c-4 3-6 5-6 8s2 5 6 8c4-3 6-5 6-8s-2-5-6-8z" stroke="currentColor" stroke-width="1"/>
+            <path d="M60 6v12" stroke="currentColor" stroke-width="0.8"/>
+          </svg>
+        </div>
+
+        <p class="hero__announce" data-config="announcement"></p>
+        <p class="hero__date" data-config="dateLong"></p>
+      </div>
+
+      <a class="scroll-cue" href="#countdown" aria-label="Scroll down">
+        <span>Scroll</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </header>
+
+    <!-- ========================================================= -->
+    <!-- 2. COUNTDOWN                                               -->
+    <!-- ========================================================= -->
+    <section class="section section--countdown" id="countdown">
+      <div class="reveal">
+        <h2 class="section__title">Counting Down</h2>
+        <p class="section__subtitle">Until we say "yes" together</p>
+
+        <div class="countdown" id="countdownTimer" role="timer" aria-live="polite">
+          <div class="countdown__unit"><span class="countdown__num" id="cd-days">00</span><span class="countdown__label">Days</span></div>
+          <div class="countdown__unit"><span class="countdown__num" id="cd-hours">00</span><span class="countdown__label">Hours</span></div>
+          <div class="countdown__unit"><span class="countdown__num" id="cd-mins">00</span><span class="countdown__label">Minutes</span></div>
+          <div class="countdown__unit"><span class="countdown__num" id="cd-secs">00</span><span class="countdown__label">Seconds</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- 3. OUR STORY                                               -->
+    <!-- ========================================================= -->
+    <section class="section section--story" id="story">
+      <div class="story reveal">
+        <!-- Photo placeholder: drop ./images/story.jpg -->
+        <figure class="photo-frame photo-frame--story">
+          <img src="./images/story.jpg" alt="Arya and Senja together" loading="lazy"
+               onerror="this.classList.add('is-missing')" />
+          <figcaption class="photo-frame__label">Couple Photo</figcaption>
+        </figure>
+
+        <div class="story__text">
+          <h2 class="section__title">Our Story</h2>
+          <div class="divider divider--left" aria-hidden="true">
+            <svg class="sprig sprig--sm" viewBox="0 0 120 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0 12h44" stroke="currentColor" stroke-width="1"/>
+              <path d="M76 12h44" stroke="currentColor" stroke-width="1"/>
+              <path d="M60 4c-4 3-6 5-6 8s2 5 6 8c4-3 6-5 6-8s-2-5-6-8z" stroke="currentColor" stroke-width="1"/>
+              <path d="M60 6v12" stroke="currentColor" stroke-width="0.8"/>
+            </svg>
+          </div>
+          <p data-config="storyOne"></p>
+          <p data-config="storyTwo"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- 4. EVENT DETAILS                                           -->
+    <!-- ========================================================= -->
+    <section class="section section--details" id="details">
+      <div class="reveal">
+        <h2 class="section__title">The Celebration</h2>
+        <div class="divider" aria-hidden="true">
+          <svg class="sprig" viewBox="0 0 120 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 12h44" stroke="currentColor" stroke-width="1"/>
+            <path d="M76 12h44" stroke="currentColor" stroke-width="1"/>
+            <path d="M60 4c-4 3-6 5-6 8s2 5 6 8c4-3 6-5 6-8s-2-5-6-8z" stroke="currentColor" stroke-width="1"/>
+            <path d="M60 6v12" stroke="currentColor" stroke-width="0.8"/>
+          </svg>
+        </div>
+
+        <div class="card details-card">
+          <ul class="details-list">
+            <li class="details-item">
+              <svg class="details-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.3" fill="none"/><path d="M3 9h18M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+              <div><span class="details-key">When</span><span class="details-val"><span data-config="dateLong"></span><br/><span data-config="timeRange"></span></span></div>
+            </li>
+            <li class="details-item">
+              <svg class="details-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11z" stroke="currentColor" stroke-width="1.3" fill="none"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.3" fill="none"/></svg>
+              <div><span class="details-key">Where</span><span class="details-val"><strong data-config="venueName"></strong><br/><span data-config="venueAddress"></span></span></div>
+            </li>
+            <li class="details-item">
+              <svg class="details-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.5 5 5.5.8-4 3.9.9 5.5L12 16.5 7.1 18l.9-5.5-4-3.9 5.5-.8z" stroke="currentColor" stroke-width="1.3" fill="none" stroke-linejoin="round"/></svg>
+              <div><span class="details-key">Dress Code</span><span class="details-val" data-config="dressCode"></span></div>
+            </li>
+          </ul>
+
+          <button class="btn btn--outline" id="addToCalendar" type="button">
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="btn__icon"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            Add to Calendar
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- 5. LOCATION                                                -->
+    <!-- ========================================================= -->
+    <section class="section section--location" id="location">
+      <div class="reveal">
+        <h2 class="section__title">Find Your Way</h2>
+        <p class="section__subtitle" data-config="venueName"></p>
+
+        <div class="map-frame">
+          <!-- Stylised map placeholder (no external embed = lightweight & offline-friendly) -->
+          <div class="map-placeholder" aria-hidden="true">
+            <svg viewBox="0 0 400 240" preserveAspectRatio="xMidYMid slice" class="map-art">
+              <rect width="400" height="240" fill="#EDE6DC"/>
+              <path d="M-20 60h440M-20 130h440M-20 200h440" stroke="#D8CDBE" stroke-width="6"/>
+              <path d="M70 -20v280M180 -20v280M300 -20v280" stroke="#D8CDBE" stroke-width="6"/>
+              <path d="M0 170q120-30 200 0t200-10" stroke="#9FB089" stroke-width="10" fill="none" opacity="0.5"/>
+            </svg>
+            <span class="map-pin">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11z" fill="currentColor"/><circle cx="12" cy="11" r="2.6" fill="#F7F2EC"/></svg>
+            </span>
+          </div>
+          <a class="btn btn--solid map-btn" id="mapsLink" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="btn__icon"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11z" stroke="currentColor" stroke-width="1.6" fill="none"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.6" fill="none"/></svg>
+            Open in Google Maps
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- 6. RSVP                                                    -->
+    <!-- ========================================================= -->
+    <section class="section section--rsvp" id="rsvp">
+      <div class="reveal">
+        <h2 class="section__title">Will You Join Us?</h2>
+        <p class="section__subtitle">Kindly reply by <span data-config="rsvpBy"></span></p>
+
+        <form class="card rsvp-form" id="rsvpForm" novalidate>
+          <div class="field">
+            <label for="guestName">Full Name</label>
+            <input type="text" id="guestName" name="name" autocomplete="name" required placeholder="Your name" />
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="guestCount">Number of Guests</label>
+              <div class="select-wrap">
+                <select id="guestCount" name="guests">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                </select>
+                <svg class="select-caret" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+            </div>
+
+            <div class="field">
+              <span class="field-label" id="attendingLabel">Will you attend?</span>
+              <div class="radio-group" role="radiogroup" aria-labelledby="attendingLabel">
+                <label class="radio-chip">
+                  <input type="radio" name="attending" value="Yes" checked />
+                  <span>Joyfully Yes</span>
+                </label>
+                <label class="radio-chip">
+                  <input type="radio" name="attending" value="No" />
+                  <span>Regretfully No</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="guestMessage">A Note for the Couple <span class="optional">(optional)</span></label>
+            <textarea id="guestMessage" name="message" rows="3" placeholder="Share your wishes…"></textarea>
+          </div>
+
+          <button class="btn btn--solid btn--block" id="rsvpSubmit" type="submit">Send RSVP</button>
+          <p class="rsvp-hint" id="rsvpHint"></p>
+        </form>
+
+        <!-- Confirmation state (revealed after submit) -->
+        <div class="card rsvp-success" id="rsvpSuccess" hidden>
+          <svg class="rsvp-success__check" viewBox="0 0 52 52" aria-hidden="true">
+            <circle cx="26" cy="26" r="24" fill="none" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M16 27l7 7 14-15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <h3 class="section__title">Thank You!</h3>
+          <p id="rsvpSuccessMsg">Your RSVP has been received. We can't wait to celebrate with you.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- 7. FOOTER                                                  -->
+    <!-- ========================================================= -->
+    <footer class="footer" id="footer">
+      <span class="corner corner--tl" aria-hidden="true"></span>
+      <span class="corner corner--br" aria-hidden="true"></span>
+
+      <div class="reveal">
+        <div class="divider" aria-hidden="true">
+          <svg class="sprig" viewBox="0 0 120 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 12h44" stroke="currentColor" stroke-width="1"/>
+            <path d="M76 12h44" stroke="currentColor" stroke-width="1"/>
+            <path d="M60 4c-4 3-6 5-6 8s2 5 6 8c4-3 6-5 6-8s-2-5-6-8z" stroke="currentColor" stroke-width="1"/>
+            <path d="M60 6v12" stroke="currentColor" stroke-width="0.8"/>
+          </svg>
+        </div>
+        <p class="footer__note" data-config="closingNote"></p>
+        <p class="footer__hosts"><span data-config="hosts"></span></p>
+        <p class="footer__hashtag" data-config="hashtag"></p>
+        <p class="footer__sign">With love,<br/><span class="footer__signnames" data-config="signOff"></span></p>
+      </div>
+    </footer>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
